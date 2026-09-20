@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Focus — a clean Pomodoro timer. 25-minute focus sessions, short and long breaks, daily stats." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Focus — Pomodoro Timer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-mode="focus">
+  <main class="app">
+    <header class="topbar">
+      <h1 class="logo">🍅 Focus</h1>
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙️</button>
+    </header>
+
+    <nav class="modes" role="tablist">
+      <button class="mode-tab active" data-mode-tab="focus" role="tab">Focus</button>
+      <button class="mode-tab" data-mode-tab="short" role="tab">Short Break</button>
+      <button class="mode-tab" data-mode-tab="long" role="tab">Long Break</button>
+    </nav>
+
+    <section class="timer-card">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 280 280" aria-hidden="true">
+          <circle class="ring-track" cx="140" cy="140" r="120" />
+          <circle class="ring-progress" id="ringProgress" cx="140" cy="140" r="120" />
+        </svg>
+        <div class="ring-center">
+          <div class="time" id="timeDisplay">25:00</div>
+          <div class="session-label" id="sessionLabel">Session 1 of 4</div>
+        </div>
+      </div>
+
+      <div class="cycle-dots" id="cycleDots" aria-label="Cycle progress"></div>
+
+      <div class="controls">
+        <button class="btn secondary" id="resetBtn">Reset</button>
+        <button class="btn primary" id="startBtn">Start</button>
+        <button class="btn secondary" id="skipBtn">Skip →</button>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-value" id="statFocus">0m</div>
+        <div class="stat-label">focused today</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="statSessions">0</div>
+        <div class="stat-label">sessions today</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="statStreak">0</div>
+        <div class="stat-label">day streak</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings modal -->
+  <div class="modal-overlay hidden" id="settingsModal">
+    <div class="modal">
+      <h2>Settings</h2>
+      <label class="field">
+        <span>Focus length (minutes)</span>
+        <input type="number" id="setFocus" min="1" max="120" value="25" />
+      </label>
+      <label class="field">
+        <span>Short break (minutes)</span>
+        <input type="number" id="setShort" min="1" max="60" value="5" />
+      </label>
+      <label class="field">
+        <span>Long break (minutes)</span>
+        <input type="number" id="setLong" min="1" max="60" value="15" />
+      </label>
+      <label class="field">
+        <span>Focus sessions before long break</span>
+        <input type="number" id="setLongEvery" min="2" max="8" value="4" />
+      </label>
+      <label class="field check">
+        <span>Sound on complete</span>
+        <input type="checkbox" id="setSound" checked />
+      </label>
+      <label class="field check">
+        <span>Auto-start next session</span>
+        <input type="checkbox" id="setAutoStart" />
+      </label>
+      <div class="modal-actions">
+        <button class="btn secondary" id="settingsClose">Close</button>
+        <button class="btn primary" id="settingsSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
