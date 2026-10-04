@@ -27,7 +27,7 @@
   try {
     const saved = JSON.parse(localStorage.getItem('pomodoro-settings') || '{}');
     settings = { ...DEFAULT_SETTINGS, ...saved };
-  } catch (e) { /* corrupted settings — use defaults */ }
+  } catch (e) { /* corrupted settings - use defaults */ }
 
   function saveSettings() {
     localStorage.setItem('pomodoro-settings', JSON.stringify(settings));
@@ -42,7 +42,7 @@
   try {
     const saved = JSON.parse(localStorage.getItem('pomodoro-stats') || 'null');
     if (saved) stats = saved;
-  } catch (e) { /* corrupted stats — start fresh */ }
+  } catch (e) { /* corrupted stats - start fresh */ }
 
   if (stats.date !== todayStr()) {
     const keptStreak = stats.lastActive === yesterdayStr();
@@ -97,7 +97,7 @@
         o.start(t);
         o.stop(t + 0.55);
       });
-    } catch (e) { /* audio unavailable — stay silent */ }
+    } catch (e) { /* audio unavailable - stay silent */ }
   }
 
   // ---------- Notifications ----------
@@ -138,8 +138,8 @@
     timeDisplay.textContent = fmt(remainingSec);
     ringProgress.style.strokeDashoffset = String(RING_C * (1 - remainingSec / totalSec));
     document.title = running || remainingSec < totalSec
-      ? `${fmt(remainingSec)} · ${modeName(mode)} — 🍅 Focus`
-      : 'Focus — Pomodoro Timer';
+      ? `${fmt(remainingSec)} · ${modeName(mode)} - 🍅 Focus`
+      : 'Focus - Pomodoro Timer';
   }
 
   function renderMode() {
@@ -150,7 +150,7 @@
       const current = (cycleCount % n) + 1;
       sessionLabel.textContent = `Session ${current} of ${n}`;
     } else {
-      sessionLabel.textContent = mode === 'long' ? 'Long break — you earned it' : 'Take a breather';
+      sessionLabel.textContent = mode === 'long' ? 'Long break - you earned it' : 'Take a breather';
     }
     cycleDots.innerHTML = '';
     for (let i = 0; i < settings.longEvery; i++) {
@@ -231,7 +231,7 @@
       next = 'focus';
       if (!skipped) {
         chime();
-        notify('Break over', 'Back to focus — you\'ve got this.');
+        notify('Break over', 'Back to focus - you\'ve got this.');
       }
     }
 
